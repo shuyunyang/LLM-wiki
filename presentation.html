@@ -1,0 +1,2103 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>污水工程設計法規與核心紅線教學手冊 — LLM Wiki 互動簡報</title>
+  <style>
+    :root {
+      /* 風格 B：現代清爽教學卡片風配色規範 */
+      --bg-body: #F8FAFC;          /* 柔和淺灰底色 Slate-50 */
+      --bg-white: #FFFFFF;         /* 純白底色 */
+      --bg-card: #FFFFFF;          /* 卡片純白底色 */
+      --bg-card-sub: #F8FAFC;      /* 次級卡片淡灰 */
+      --border-light: #E2E8F0;     /* 柔和灰框 Slate-200 */
+      --border-dark: #CBD5E1;      /* 深層邊框 Slate-300 */
+      
+      --teal-primary: #0D9488;     /* 湖水綠主色 Teal-600 */
+      --teal-hover: #0F766E;       /* 深湖水綠 Teal-700 */
+      --teal-light: #F0FDFA;       /* 淺湖水綠背景 Teal-50 */
+      --teal-border: #99F6E4;      /* 湖水綠外框 Teal-200 */
+      
+      --red-alert: #DC2626;        /* 警示紅 Red-600 (強制法規紅線) */
+      --red-bg: #FEF2F2;           /* 警示紅淺底 Red-50 */
+      --red-border: #FECACA;       /* 警示紅邊框 Red-200 */
+      
+      --green-pass: #16A34A;       /* 通過綠 Green-600 */
+      --green-bg: #F0FDF4;         /* 通過綠淺底 Green-50 */
+      --green-border: #BBF7D0;     /* 通過綠邊框 Green-200 */
+      
+      --amber-warn: #D97706;       /* 提醒琥珀 Amber-600 */
+      --amber-bg: #FFFBEB;         /* 提醒淺黃 Amber-50 */
+      --amber-border: #FDE68A;     /* 提醒外框 Amber-200 */
+      
+      --text-main: #0F172A;        /* 主文字深黑 Slate-900 */
+      --text-muted: #475569;       /* 次要說明文字 Slate-600 */
+      --text-sub: #64748B;         /* 輔助灰色文字 Slate-500 */
+      
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      --font-mono: "Fira Code", Consolas, Monaco, "Courier New", monospace;
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* 頂部導航進度列 */
+    header {
+      background: var(--bg-white);
+      border-bottom: 1px solid var(--border-light);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--teal-primary);
+    }
+
+    .header-badge {
+      background: var(--teal-light);
+      color: var(--teal-primary);
+      border: 1px solid var(--teal-border);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .slide-counter {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      font-weight: 600;
+    }
+
+    .btn {
+      background: var(--bg-white);
+      color: var(--text-main);
+      border: 1px solid var(--border-light);
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn:hover {
+      background: var(--bg-card-sub);
+      border-color: var(--teal-primary);
+      color: var(--teal-primary);
+    }
+
+    .btn-teal {
+      background: var(--teal-primary);
+      color: #FFFFFF;
+      border: 1px solid var(--teal-primary);
+    }
+
+    .btn-teal:hover {
+      background: var(--teal-hover);
+      color: #FFFFFF;
+    }
+
+    /* 頂部彩色進度條 */
+    .progress-bar-container {
+      width: 100%;
+      height: 4px;
+      background: #E2E8F0;
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal-primary), #06B6D4);
+      width: 7.7%;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* 簡報主舞台：單頁滿版視窗 100vh 扣除頂底高度 */
+    main {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slide-deck {
+      position: relative;
+      width: 100%;
+      max-width: 1360px;
+      height: 100%;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      box-shadow: var(--shadow-md);
+      padding: 24px 32px 56px 32px;
+      display: none;
+      flex-direction: column;
+      overflow-y: auto; /* 平滑捲動防爆版 */
+      animation: slideFadeIn 0.25s ease-out;
+    }
+
+    .slide.active {
+      display: flex;
+    }
+
+    @keyframes slideFadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 投影片標題區 */
+    .slide-header {
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-shrink: 0;
+    }
+
+    .slide-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .slide-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .slide-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .slide-chip {
+      background: var(--teal-light);
+      color: var(--teal-primary);
+      border: 1px solid var(--teal-border);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* 卡片與柵格排版 */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .card-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title.teal { color: var(--teal-primary); }
+    .card-title.red { color: var(--red-alert); }
+
+    /* 法規紅線警示框 */
+    .redline-box {
+      border-left: 4px solid var(--red-alert);
+      background: var(--red-bg);
+      border-top: 1px solid var(--red-border);
+      border-right: 1px solid var(--red-border);
+      border-bottom: 1px solid var(--red-border);
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: #7F1D1D;
+    }
+
+    .redline-box strong {
+      color: var(--red-alert);
+    }
+
+    /* 常規規範說明框 */
+    .rule-box {
+      border-left: 4px solid var(--teal-primary);
+      background: var(--teal-light);
+      border-top: 1px solid var(--teal-border);
+      border-right: 1px solid var(--teal-border);
+      border-bottom: 1px solid var(--teal-border);
+      padding: 10px 14px;
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: #134E4A;
+    }
+
+    .rule-box strong {
+      color: var(--teal-primary);
+    }
+
+    /* 徽章與狀態標籤 */
+    .badge-red {
+      background: var(--red-bg);
+      color: var(--red-alert);
+      border: 1px solid var(--red-border);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      display: inline-block;
+    }
+
+    .badge-green {
+      background: var(--green-bg);
+      color: var(--green-pass);
+      border: 1px solid var(--green-border);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      display: inline-block;
+    }
+
+    .badge-amber {
+      background: var(--amber-bg);
+      color: var(--amber-warn);
+      border: 1px solid var(--amber-border);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      display: inline-block;
+    }
+
+    /* 表格設計 */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.86rem;
+      background: var(--bg-white);
+    }
+
+    th {
+      background: #F1F5F9;
+      color: var(--text-main);
+      padding: 9px 12px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border-light);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border-light);
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: #F8FAFC;
+    }
+
+    /* 數學公式純 HTML/CSS 排版元件 (零依賴 LaTeX) */
+    .formula-card {
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 10px 14px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      color: var(--text-main);
+      flex-wrap: wrap;
+    }
+
+    .fraction {
+      display: inline-flex;
+      flex-direction: column;
+      vertical-align: middle;
+      text-align: center;
+      padding: 0 4px;
+      line-height: 1.1;
+    }
+
+    .fraction-top {
+      border-bottom: 1.5px solid var(--text-main);
+      padding-bottom: 2px;
+      font-size: 0.88rem;
+    }
+
+    .fraction-bottom {
+      padding-top: 2px;
+      font-size: 0.88rem;
+    }
+
+    .formula-var {
+      font-style: italic;
+      font-weight: 700;
+      color: var(--teal-primary);
+    }
+
+    /* 右下角固定半透明資料溯源膠囊標籤 */
+    .provenance-capsule {
+      position: absolute;
+      bottom: 12px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(4px);
+      border: 1px solid var(--border-dark);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.76rem;
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+      z-index: 10;
+      max-width: 85%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .provenance-capsule strong {
+      color: var(--teal-primary);
+    }
+
+    .provenance-capsule .pdf-source {
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+
+    /* 底部懸浮控制列 */
+    footer {
+      background: var(--bg-white);
+      border-top: 1px solid var(--border-light);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+      box-shadow: 0 -1px 3px 0 rgba(0, 0, 0, 0.05);
+    }
+
+    .footer-left {
+      font-size: 0.84rem;
+      color: var(--text-sub);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-right {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* 分頁標籤 (Tabs) 元件 */
+    .tab-nav {
+      display: flex;
+      gap: 6px;
+      border-bottom: 1px solid var(--border-light);
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 8px 14px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: var(--teal-primary);
+    }
+
+    .tab-btn.active {
+      color: var(--teal-primary);
+      border-bottom-color: var(--teal-primary);
+      background: var(--teal-light);
+      border-radius: 6px 6px 0 0;
+    }
+
+    .tab-pane {
+      display: none;
+    }
+
+    .tab-pane.active {
+      display: block;
+      animation: slideFadeIn 0.2s ease-out;
+    }
+
+    /* 互動小工具專用版面：左側輸入、右側即時結果與出處 */
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 20px;
+      height: calc(100% - 75px);
+    }
+
+    .calc-input-panel {
+      background: var(--bg-card-sub);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-y: auto;
+    }
+
+    .calc-output-panel {
+      background: var(--bg-white);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .form-control {
+      width: 100%;
+      background: var(--bg-white);
+      border: 1px solid var(--border-dark);
+      color: var(--text-main);
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: var(--font-mono);
+      transition: border-color 0.2s;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--teal-primary);
+      box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.15);
+    }
+
+    .result-card {
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      padding: 12px 14px;
+      background: var(--bg-card-sub);
+    }
+
+    .result-title {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-sub);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .result-value-big {
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    /* 目錄跳轉側邊欄 */
+    .toc-drawer {
+      position: fixed;
+      top: 0;
+      right: -380px;
+      width: 380px;
+      height: 100%;
+      background: var(--bg-white);
+      border-left: 1px solid var(--border-light);
+      z-index: 100;
+      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: -4px 0 20px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .toc-drawer.open {
+      right: 0;
+    }
+
+    .toc-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .toc-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 16px;
+      list-style: none;
+    }
+
+    .toc-item {
+      padding: 9px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+      transition: all 0.2s;
+    }
+
+    .toc-item:hover {
+      background: var(--bg-card-sub);
+      color: var(--teal-primary);
+    }
+
+    .toc-item.active {
+      background: var(--teal-light);
+      color: var(--teal-primary);
+      font-weight: 700;
+    }
+
+    .toc-num {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      width: 24px;
+    }
+
+    /* 簡易向量曲線 SVG 容器 */
+    .svg-curve-box {
+      width: 100%;
+      height: 160px;
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部資訊列 -->
+  <header>
+    <div class="header-left">
+      <div class="header-logo">
+        <span>📐 污水工程設計法規與核心紅線教學手冊</span>
+      </div>
+      <span class="header-badge">100% 嚴格封閉式 5 篇文獻 Grounded</span>
+    </div>
+    <div class="header-right">
+      <div class="slide-counter" id="slideCounter">Slide 1 / 13</div>
+      <button class="btn" onclick="toggleTOC()">📑 章節目錄</button>
+      <button class="btn" onclick="toggleFullScreen()">⛶ 全螢幕</button>
+    </div>
+  </header>
+
+  <!-- 頂部進度條 -->
+  <div class="progress-bar-container">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+
+  <!-- 簡報舞台 -->
+  <main>
+    <div class="slide-deck">
+
+      <!-- Slide 1: 封面與法規架構總覽 -->
+      <div class="slide active" id="slide-1">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">污水工程設計法規與核心紅線教學手冊</div>
+            <div class="slide-subtitle">依據 5 篇官方技術報告與國家規範建立之封閉式知識庫系統</div>
+          </div>
+          <div class="slide-chip">模組 1 · 體系總覽</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title teal">📚 知識庫 5 篇法規與技術報告定位</div>
+            <ul style="padding-left: 20px; font-size: 0.88rem; color: var(--text-muted); line-height: 1.8;">
+              <li><strong>1. 下水道用戶排水設備標準</strong>（民國 101 年）：家戶內部排水設備、雨污分流、橘紅色管材與水密試驗。</li>
+              <li><strong>2. 建築物污水處理設施設計技術規範</strong>（民國 108 年）：各類建築用水量推估、人數算定、8 大生物處理工法矩陣。</li>
+              <li><strong>3. 下水道工程設施標準</strong>（民國 114 年 11 月令修正）：<strong>上位最高法規命令</strong>，公共雨污管渠、抽水站機械、水資中心單元規格。</li>
+              <li><strong>4. 下水道系統設計及解說（第三章）</strong>（民國 113 年 1 月）：計畫水量水質推估、尖峰 Babbitt 公式、廠區防洪 100 年高程與節能。</li>
+              <li><strong>5. 下水道系統設計及解說（第四章）</strong>（民國 113 年 1 月）：曼寧水理公式、圓管水力特性曲線、餘裕率、跌落井消能、CNS 15536 人孔蓋。</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title red">⚖️ 規範衝突裁決原則（使用者明確指示）</div>
+            <div class="redline-box">
+              <strong>【法規位階與最新原則】</strong><br>
+              跨篇文獻對同一參數或條文出現數值差異時，<strong>以《下水道工程設施標準》（民國 114 年版）優於《下水道系統設計及解說》（民國 113 年版）及舊手冊為主</strong>，因其位階為法規命令且發布時間最新。
+            </div>
+            <div class="rule-box">
+              <strong>【教學架構核心主軸】</strong><br>
+              本簡報直接切入<strong>「關鍵設計參數與法規紅線 → 常見工法與實務檢核重點」</strong>，並配備獨立互動檢核計算器與 Tab 交叉對照表。
+            </div>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[index]]</strong> ｜ <span class="pdf-source">[03.下水道工程設施標準.pdf | 第1-4章]</span>
+        </div>
+      </div>
+
+      <!-- Slide 2: 水量推估與水質設計基準 -->
+      <div class="slide" id="slide-2">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">水量推估與設計進流水質基準</div>
+            <div class="slide-subtitle">自來水折算係數、地下水入滲率與時最大尖峰公式</div>
+          </div>
+          <div class="slide-chip">模組 2 · 水量水質推估</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title teal">💧 公共污水量三大推估基底</div>
+            <div class="rule-box">
+              <strong>1. 家庭污水量轉換係數：</strong><br>
+              家庭污水量以自來水用水量之 <strong>80% ～ 90%</strong> (0.8 ～ 0.9) 計算。<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[04.下水道系統設計及解說_第三章.pdf | 3.2節 p.12]</span>
+            </div>
+            <div class="rule-box">
+              <strong>2. 地下水入滲量 (Infiltration)：</strong><br>
+              以計畫最大日污水量之 <strong>10% ～ 15%</strong> 估算。<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[04.下水道系統設計及解說_第三章.pdf | 3.2節 p.15]</span>
+            </div>
+            <div class="rule-box" style="margin-bottom: 0;">
+              <strong>3. 計畫時最大尖峰係數（Babbitt 公式）：</strong>
+              <div class="formula-card" style="margin-top: 6px;">
+                <span class="formula-var">Pf</span> = 
+                <div class="fraction">
+                  <span class="fraction-top">5</span>
+                  <span class="fraction-bottom"><span class="formula-var">P</span><sup>0.2</sup></span>
+                </div>
+                &nbsp;&nbsp;（Pf 限制範圍：1.5 ～ 3.0）
+              </div>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">其中 P 為計畫千人口數 [04.下水道系統設計及解說_第三章.pdf | 3.2節 p.16]</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title teal">📊 設計進流水質與建築物基準</div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>管制項目</th>
+                    <th>分流式進流基準</th>
+                    <th>合流式晴天進流</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>生化需氧量 (BOD)</strong></td>
+                    <td>150 ～ 250 mg/L</td>
+                    <td>100 ～ 180 mg/L</td>
+                  </tr>
+                  <tr>
+                    <td><strong>懸浮固體 (SS)</strong></td>
+                    <td>150 ～ 250 mg/L</td>
+                    <td>100 ～ 200 mg/L</td>
+                  </tr>
+                  <tr>
+                    <td><strong>化學需氧量 (COD)</strong></td>
+                    <td>250 ～ 400 mg/L</td>
+                    <td>150 ～ 300 mg/L</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="redline-box" style="margin-bottom: 0;">
+              <strong>建築物使用人數算定基準：</strong><br>
+              住宅每戶以 4 ～ 5 人計，人均日污水量採 200 ～ 250 L/人·day；人均 BOD 負荷採 40 g/人·day。<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[02.建築物污水處理設施設計技術規範.pdf | 第1章第4-5條 p.2-3]</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[rule_下水道規劃水量與水質推估]]</strong> ｜ <span class="pdf-source">[04.第三章.pdf | 3.2節 p.12-16]</span>
+        </div>
+      </div>
+
+      <!-- Slide 3: 放流水水質標準與處理性能 -->
+      <div class="slide" id="slide-3">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">放流水水質標準與法定去除率紅線</div>
+            <div class="slide-subtitle">甲類、乙類水質對照、保護區加嚴管制與防規避拆分條款</div>
+          </div>
+          <div class="slide-chip">模組 3 · 放流水紅線</div>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>管制項目</th>
+                <th>甲類放流水標準（一般受納水體）</th>
+                <th>乙類放流水標準（特定寬鬆水體）</th>
+                <th>法定處理性能去除率</th>
+                <th>法規出處</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>生化需氧量 (BOD)</strong></td>
+                <td><span class="badge-red">≤ 30 mg/L</span></td>
+                <td>≤ 50 mg/L</td>
+                <td>初級 ≥ 25% ～ 40%<br>二級 ≥ 85%</td>
+                <td>[02.規範 p.1] / [03.標準 p.18]</td>
+              </tr>
+              <tr>
+                <td><strong>化學需氧量 (COD)</strong></td>
+                <td><span class="badge-red">≤ 100 mg/L</span></td>
+                <td>≤ 150 mg/L</td>
+                <td>二級處理穩定降解</td>
+                <td>[02.規範 p.1] / [03.標準 p.18]</td>
+              </tr>
+              <tr>
+                <td><strong>懸浮固體 (SS)</strong></td>
+                <td><span class="badge-red">≤ 30 mg/L</span></td>
+                <td>≤ 50 mg/L</td>
+                <td>初級 ≥ 40% ～ 60%<br>二級 ≥ 85%</td>
+                <td>[02.規範 p.1] / [03.標準 p.18]</td>
+              </tr>
+              <tr>
+                <td><strong>大腸桿菌群 (CFU/100mL)</strong></td>
+                <td><span class="badge-red">≤ 200,000</span></td>
+                <td>≤ 300,000</td>
+                <td>加氯消毒後合格排放</td>
+                <td>[02.規範 p.1] / [03.標準 p.28]</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title teal">🛡️ 水質保護區加嚴管制條款</div>
+            <div class="rule-box" style="margin-bottom: 0;">
+              建築物污水處理設施位於自來水水源水質水量保護區者，不論建築規模大小，**全面強制適用甲類標準**；特定水庫集水區得加驗總氮 (TN ≤ 15 mg/L) 與總磷 (TP ≤ 2 mg/L)。<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[02.建築物污水處理設施設計技術規範.pdf | 第1章第2條 p.1]</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title red">⛔ 防規避拆分防堵紅線</div>
+            <div class="redline-box" style="margin-bottom: 0;">
+              同一建築基地或同一建照工程內，嚴禁為了適用小型寬鬆工法而將單一污水設施**刻意拆分為數套小型設施**；全區使用人數與污水量必須合併計算設計。<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[02.建築物污水處理設施設計技術規範.pdf | 第1章第6條 p.4]</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[rule_放流水水質標準與處理性能]]</strong> ｜ <span class="pdf-source">[02.技術規範.pdf | 第1章 p.1-4]</span>
+        </div>
+      </div>
+
+      <!-- Slide 4: 管渠水理學與圓管特性曲線 -->
+      <div class="slide" id="slide-4">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">管渠重力水理學與圓管水力特性曲線</div>
+            <div class="slide-subtitle">曼寧公式應用、安全糙光係數與非線性水力極值</div>
+          </div>
+          <div class="slide-chip">模組 4 · 水力特性曲線</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title teal">📐 重力管水理計算：曼寧公式</div>
+            <div class="formula-card">
+              <span class="formula-var">V</span> = 
+              <div class="fraction">
+                <span class="fraction-top">1</span>
+                <span class="fraction-bottom"><span class="formula-var">n</span></span>
+              </div>
+              <span class="formula-var">R</span><sup>2/3</sup> 
+              <span class="formula-var">S</span><sup>1/2</sup>
+              &nbsp;&nbsp;，&nbsp;&nbsp;
+              <span class="formula-var">Q</span> = <span class="formula-var">A</span> × <span class="formula-var">V</span>
+            </div>
+            <ul style="font-size: 0.85rem; color: var(--text-muted); padding-left: 18px; margin-bottom: 10px;">
+              <li><span class="formula-var">V</span>：平均流速 (m/s)，<span class="formula-var">Q</span>：流量 (m<sup>3</sup>/s)</li>
+              <li><span class="formula-var">R</span>：水力半徑 (R = A/P，m)；<span class="formula-var">S</span>：水力坡度 (m/m)</li>
+            </ul>
+            <div class="rule-box">
+              <strong>曼寧糙光係數 n 安全設計取值：</strong><br>
+              手冊建議考量長期營運管壁生長黏著物與接頭水頭損失，<strong>建議統一採 n = 0.015</strong>（安全範圍 0.012 ～ 0.016）。<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[05.下水道系統設計及解說_第四章.pdf | 4.2節 p.15-16]</span>
+            </div>
+            <div class="rule-box" style="margin-bottom: 0;">
+              <strong>壓力輸水管：海森-威廉公式</strong><br>
+              V = 0.84935 × C × R<sup>0.63</sup> × S<sup>0.54</sup> (DIP管 C=100～130，塑膠管 C=130～150)。
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title teal">🌊 圓形重力管水力特性曲線極值</div>
+            <div class="svg-curve-box">
+              <svg width="460" height="150" viewBox="0 0 460 150">
+                <line x1="40" y1="135" x2="430" y2="135" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="40" y1="135" x2="40" y2="15" stroke="#94A3B8" stroke-width="1.5"/>
+                <text x="10" y="20" fill="#64748B" font-size="10">h/D=1.0</text>
+                <text x="10" y="75" fill="#64748B" font-size="10">h/D=0.5</text>
+                <text x="10" y="140" fill="#64748B" font-size="10">0.0</text>
+                <line x1="40" y1="75" x2="420" y2="75" stroke="#E2E8F0" stroke-dasharray="3"/>
+                <!-- 流速曲線 (紅) -->
+                <path d="M 40 135 Q 260 110 330 75 T 390 35 Q 360 20 320 20" fill="none" stroke="#DC2626" stroke-width="2.5"/>
+                <!-- 流量曲線 (綠) -->
+                <path d="M 40 135 Q 170 100 240 75 T 375 25 Q 350 20 320 20" fill="none" stroke="#0D9488" stroke-width="2.5"/>
+                <circle cx="390" cy="35" r="3.5" fill="#DC2626"/>
+                <text x="270" y="48" fill="#DC2626" font-size="10" font-weight="700">最大流速 1.14 (h/D=0.813)</text>
+                <circle cx="375" cy="25" r="3.5" fill="#0D9488"/>
+                <text x="240" y="15" fill="#0D9488" font-size="10" font-weight="700">最大流量 1.076 (h/D=0.938)</text>
+                <circle cx="240" cy="75" r="3.5" fill="#16A34A"/>
+                <text x="150" y="88" fill="#16A34A" font-size="10">半滿流 v/V=1.0, q/Q=0.5</text>
+              </svg>
+            </div>
+            <ul style="font-size: 0.84rem; color: var(--text-muted); padding-left: 18px; margin-top: 8px; line-height: 1.6;">
+              <li><strong>最大流速點 (h/D = 0.813)：</strong>流速達滿管之 <strong>1.14 倍</strong>！</li>
+              <li><strong>最大流量點 (h/D = 0.938)：</strong>通水流量達滿管之 <strong>1.076 倍</strong>！</li>
+              <li><strong>半滿流特徵 (h/D = 0.50)：</strong>水力半徑 R = D/4，流速與滿管相同，通水量恰為一半！</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[rule_管渠水力水理學與水力特性]]</strong> ｜ <span class="pdf-source">[05.第四章.pdf | 4.2節 p.12-21]</span>
+        </div>
+      </div>
+
+      <!-- Slide 5: 管渠流速紅線與設計容量餘裕率 -->
+      <div class="slide" id="slide-5">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">管渠流速紅線與水深比餘裕率標準</div>
+            <div class="slide-subtitle">自清流速、防衝蝕上限與管徑分級水深比門檻</div>
+          </div>
+          <div class="slide-chip">模組 5 · 管渠設計限制</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title red">🚦 重力污水管渠流速法定紅線</div>
+            <div class="redline-box">
+              <strong>最小流速紅線（防淤積）：</strong><br>
+              計畫污水量時，最小流速不得低於 <span class="badge-red">≥ 0.6 m/s</span>。<br>
+              <em>理由：低於 0.6 m/s 污泥有機物沉積管底，發酵釋出致命硫化氫 (H<sub>2</sub>S) 氣體！</em>
+            </div>
+            <div class="redline-box">
+              <strong>最大流速紅線（防衝蝕）：</strong><br>
+              計畫污水量時，最大流速不得大於 <span class="badge-red">≤ 3.0 m/s</span>。<br>
+              <em>理由：超過 3.0 m/s 高速泥砂將劇烈刮損管壁、破壞管件密封。</em>
+            </div>
+            <div class="rule-box" style="margin-bottom: 0;">
+              <strong>工程推薦理想流速區間：</strong><br>
+              重力污水管理想設計流速為 <span class="badge-green">1.0 ～ 1.8 m/s</span>。<br>
+              雨水管渠流速為 0.8 ～ 3.0 m/s；壓力管經濟流速為 1.2 ～ 2.1 m/s。
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title teal">📏 管徑分級最大容許水深比 (d/D) 餘裕率</div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>管徑級距 (D)</th>
+                    <th>最大水深比 (d/D)</th>
+                    <th>通水容量比</th>
+                    <th>安全餘裕說明</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>小管徑：D ≤ 500 mm</strong></td>
+                    <td><span class="badge-red">d/D ≤ 0.50</span></td>
+                    <td>q/Q = 0.50</td>
+                    <td><strong>預留 100% 流量餘裕</strong>（半滿流），防止小管雜物卡阻溢流。</td>
+                  </tr>
+                  <tr>
+                    <td><strong>中管徑：600 ～ 900 mm</strong></td>
+                    <td><span class="badge-amber">d/D ≤ 0.70 ～ 0.80</span></td>
+                    <td>q/Q ≈ 0.83～0.98</td>
+                    <td>預留 20% ～ 30% 頂部氣室空間，利於通風散氣。</td>
+                  </tr>
+                  <tr>
+                    <td><strong>大管徑：D ≥ 1000 mm</strong></td>
+                    <td><span class="badge-green">d/D ≤ 0.80</span></td>
+                    <td>q/Q ≈ 0.98</td>
+                    <td>預留 20% 頂部氣室斷面，防止水力波動氣鎖。</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="rule-box" style="margin-bottom: 0;">
+              <strong>最小管徑法定門檻：</strong><br>
+              用戶接管 ≥ 100 mm；公共污水幹支管 ≥ 200 mm；雨水/合流管 ≥ 800 mm (箱涵 1200 mm)。
+            </div>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[rule_管渠設計容量與餘裕率標準]]</strong> ｜ <span class="pdf-source">[05.第四章.pdf | 4.3節 p.25-29]</span>
+        </div>
+      </div>
+
+      <!-- Slide 6: 特殊地形水理防護與特殊系統 -->
+      <div class="slide" id="slide-6">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">特殊地形水理防護與特殊收集系統</div>
+            <div class="slide-subtitle">陡坡空氣混入指標 χ、五大跌落井消能與真空/壓力下水道</div>
+          </div>
+          <div class="slide-chip">模組 6 · 特殊工法與消能</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title red">⚡ 陡坡空氣混入指標 χ 與跌落井</div>
+            <div class="redline-box">
+              <strong>空氣混入指標檢核紅線：</strong><br>
+              當陡坡計算之空氣混入指標 <span class="badge-red">χ ≥ 8</span> 時，水流夾帶大量氣泡誘發管內壅水與振動，<strong>必須強制於下游人孔設置排氣立管與透氣人孔</strong>！<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[05.下水道系統設計及解說_第四章.pdf | 4.6節 p.62-64]</span>
+            </div>
+            <div class="rule-box" style="margin-bottom: 0;">
+              <strong>跌落井設置門檻與消能型式：</strong><br>
+              管渠高低落差 <span class="badge-red">超過 0.6 m</span> (60 cm) 強制設跌落井：
+              <ol style="padding-left: 18px; font-size: 0.82rem; margin-top: 4px; line-height: 1.6;">
+                <li><strong>外落管式</strong>：管徑 D ≤ 400 mm 常用外置立管消能。</li>
+                <li><strong>內落管式</strong>：井內附壁導流立管。</li>
+                <li><strong>擋板消能式</strong>：井內耐衝擊橫向擋板碎流。</li>
+                <li><strong>階梯消能式</strong>：連續跌水台階消散動能。</li>
+                <li><strong>渦流消能井 (Vortex)</strong>：切線導入螺旋下衝，<strong>特深井 (>5m) 與大流量最優</strong>。</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title teal">🌀 真空式 vs 壓力式下水道比較</div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>系統項目</th>
+                    <th>真空下水道 (Vacuum)</th>
+                    <th>壓力下水道 (Pressure)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>適用地形</strong></td>
+                    <td>地下水位高、平坦地帶、狹小道路</td>
+                    <td>地勢起伏劇烈、分散聚落</td>
+                  </tr>
+                  <tr>
+                    <td><strong>運行壓力</strong></td>
+                    <td>負壓 <span class="badge-red">-6 ～ -7 m 水柱</span></td>
+                    <td>沉水粉碎泵機械加壓</td>
+                  </tr>
+                  <tr>
+                    <td><strong>輸送流速</strong></td>
+                    <td>高速 <span class="badge-green">4.6 ～ 5.5 m/s</span></td>
+                    <td>0.6 ～ 3.0 m/s</td>
+                  </tr>
+                  <tr>
+                    <td><strong>管徑規格</strong></td>
+                    <td>80 ～ 200 mm (鋸齒波浪敷設)</td>
+                    <td>50 ～ 100 mm (耐壓管)</td>
+                  </tr>
+                  <tr>
+                    <td><strong>關鍵防護</strong></td>
+                    <td>中央真空站雙迴路排臭</td>
+                    <td><span class="badge-red">固體粉碎 &lt; 6 mm</span>、防逆止閥</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="rule-box" style="margin-bottom: 0;">
+              <strong>耐磨耗管材排序：</strong> HDPE ≈ FRP &gt; PVC &gt; RCP (混凝土管高流速區需加厚保護層 10～20 mm)。
+            </div>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[rule_陡坡管渠與消能防護標準]]</strong> ｜ <span class="pdf-source">[05.第四章.pdf | 4.6-4.7節 p.60-80]</span>
+        </div>
+      </div>
+
+      <!-- Slide 7: 耐震設計、新式人孔蓋與施工安全 -->
+      <div class="slide" id="slide-7">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">管渠耐震、新式人孔蓋與施工安全紅線</div>
+            <div class="slide-subtitle">CNS 15536 A2302 人孔蓋規範、地下試挖與 1.5m 擋土紅線</div>
+          </div>
+          <div class="slide-chip">模組 7 · 施工現場紅線</div>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-title teal">🛡️ 新式人孔蓋規範 (CNS 15536)</div>
+            <div class="rule-box">
+              <strong>1. 8度斜面防跳動：</strong><br>
+              座框與蓋面採 8° 錐度接觸，產生向心楔合力，防止位移與行車敲擊異音。<br>
+              <span style="font-size: 0.75rem; color: var(--text-sub);">[05.第四章 p.53]</span>
+            </div>
+            <div class="redline-box">
+              <strong>2. 防墜載重強度：</strong><br>
+              防墜網集中載重 <span class="badge-red">≥ 4.5 kN</span>，防人員開蓋掉落。<br>
+              <span style="font-size: 0.75rem; color: var(--text-sub);">[05.第四章 p.55]</span>
+            </div>
+            <div class="redline-box" style="margin-bottom: 0;">
+              <strong>3. 耐揚壓頂升位移：</strong><br>
+              耐壓 60 ～ 106 kN；受壓上浮位移 ≤ 20 mm，殘留位移 ≤ 10 mm。<br>
+              <span style="font-size: 0.75rem; color: var(--text-sub);">[05.第四章 p.56-57]</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title red">🚧 現場試挖與安全開挖紅線</div>
+            <div class="redline-box">
+              <strong>試挖深度標準：</strong><br>
+              施工前調查試挖深度原則上需 <span class="badge-red">≥ 2.5 m</span> 或達管頂下 0.5 m。<br>
+              <span style="font-size: 0.75rem; color: var(--text-sub);">[05.第四章 p.79]</span>
+            </div>
+            <div class="redline-box">
+              <strong>擋土支撐強制紅線：</strong><br>
+              人員開挖深達 <span class="badge-red">≥ 1.5 m</span> 時，<strong>依法必須設置擋土防護設施</strong>，嚴禁無支撐深槽作業！<br>
+              <span style="font-size: 0.75rem; color: var(--text-sub);">[05.第四章 p.81]</span>
+            </div>
+            <div class="redline-box" style="margin-bottom: 0;">
+              <strong>強制 CLSM/MRC 回填：</strong><br>
+              管溝回填一律採用低強度材料，嚴禁原土石回填。<br>
+              <span style="font-size: 0.75rem; color: var(--text-sub);">[05.第四章 p.83]</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title teal">📐 埋設深度與側溝淨距</div>
+            <div class="rule-box">
+              <strong>最小覆土深度（土被）：</strong><br>
+              • 剛性管 (RCP)：≥ 50 cm<br>
+              • 撓性管 (PVC/HDPE)：≥ 100 cm<br>
+              <span style="font-size: 0.75rem; color: var(--text-sub);">[05.第四章 p.35]</span>
+            </div>
+            <div class="redline-box">
+              <strong>側溝防衝突淨距：</strong><br>
+              管渠頂部必須<strong>低於側溝底版以下 ≥ 0.2 m (20 cm)</strong>，防止敲破幹管。<br>
+              <span style="font-size: 0.75rem; color: var(--text-sub);">[05.第四章 p.36]</span>
+            </div>
+            <div class="rule-box" style="margin-bottom: 0;">
+              <strong>人孔交接抗震：</strong><br>
+              人孔與管渠連接處設<strong>可撓性橡膠沉陷接頭</strong>防剪斷破裂。<br>
+              <span style="font-size: 0.75rem; color: var(--text-sub);">[05.第四章 p.101]</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[rule_下水道耐震與新式人孔蓋標準]]</strong> ｜ <span class="pdf-source">[05.第四章.pdf | 4.4-4.9節 p.35-102]</span>
+        </div>
+      </div>
+
+      <!-- Slide 8: 八大生物處理工法橫向對比 -->
+      <div class="slide" id="slide-8">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">建築物八大生物處理工法矩陣對比</div>
+            <div class="slide-subtitle">適用規模、BOD 負荷、停留時間與污泥迴流要求綜合橫向評比</div>
+          </div>
+          <div class="slide-chip">模組 8 · 生物處理工法</div>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>工法名稱</th>
+                <th>適用規模 (Q)</th>
+                <th>槽體容積 / 負荷限制</th>
+                <th>污泥迴流要求</th>
+                <th>實務維護特點與管理重點</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. 旋轉生物圓盤 (RBC)</strong></td>
+                <td>Q &gt; 10 m<sup>3</sup>/day</td>
+                <td>BOD 面積負荷 ≤ 5 g/m<sup>2</sup>·day<br>液面負荷 ≤ 30 L/m<sup>2</sup>·day</td>
+                <td><span class="badge-green">無需迴流污泥</span></td>
+                <td>轉盤周速 ≤ 20 m/min，浸水率 40%，盤距 20～25 mm，操作維護簡便。</td>
+              </tr>
+              <tr>
+                <td><strong>2. 接觸曝氣法</strong></td>
+                <td>Q &gt; 10 m<sup>3</sup>/day</td>
+                <td>BOD 容積負荷 ≤ 0.3 kg/m<sup>3</sup>·day<br>有效容量 ≥ 2/5 Q</td>
+                <td><span class="badge-green">無需迴流污泥</span></td>
+                <td>濾材填充率 ≥ 55%，空隙率 97%～99%，定期散氣反洗防濾材孔隙堵塞。</td>
+              </tr>
+              <tr>
+                <td><strong>3. 延長曝氣法</strong></td>
+                <td>Q &gt; 50 m<sup>3</sup>/day</td>
+                <td>BOD 容積負荷 ≤ 0.2 kg/m<sup>3</sup>·day<br>曝氣槽容量 ≥ 2/3 Q</td>
+                <td><span class="badge-red">迴流能力 ≥ 200%</span></td>
+                <td><strong>不設初沉槽</strong>（加強細孔格柵攔污），HRT 長達 18～24 小時。</td>
+              </tr>
+              <tr>
+                <td><strong>4. 批次活性污泥 (SBR)</strong></td>
+                <td>Q &gt; 10 m<sup>3</sup>/day</td>
+                <td>有效容量 V ≥ 0.65Q + 2Q/n<br>BOD 負荷 ≤ 0.30 kg/m<sup>3</sup>·day</td>
+                <td><span class="badge-green">無需沉澱槽/迴流</span></td>
+                <td>單槽依序進水、曝氣、沉澱、排放。仰賴可靠 PLC 自動閥與浮動排水器。</td>
+              </tr>
+              <tr>
+                <td><strong>5. 標準活性污泥法</strong></td>
+                <td>Q &gt; 1,000 m<sup>3</sup>/day</td>
+                <td>曝氣槽容量 ≥ 2/3 Q<br>BOD 負荷 ≤ 0.5 kg/m<sup>3</sup>·day</td>
+                <td>迴流能力 ≥ 100%</td>
+                <td>大型處理設施適用，需專責技術人員每日檢測調控 MLSS 與 SV30。</td>
+              </tr>
+              <tr>
+                <td><strong>6. 滴濾池法</strong></td>
+                <td>Q &gt; 10 m<sup>3</sup>/day</td>
+                <td>礫石 BOD ≤ 0.1 kg/m<sup>3</sup>·day<br>塑膠表面 ≤ 3.0 g/m<sup>2</sup>·day</td>
+                <td><span class="badge-red">必須迴流處理水</span></td>
+                <td>礫石迴流比 ≥ 100%、塑膠 ≥ 200%，底部留設通氣孔與坡度 ≥ 1/50。</td>
+              </tr>
+              <tr>
+                <td><strong>7. 分離接觸曝氣法</strong></td>
+                <td>Q ≤ 10 m<sup>3</sup>/day (5～50人)</td>
+                <td>甲類容積負荷 ≤ 0.3 kg/m<sup>3</sup>·day</td>
+                <td>排泥送回初沉槽</td>
+                <td>小型套裝設施，初沉＋接觸曝氣＋沉澱＋消毒，適合獨棟或小型社區。</td>
+              </tr>
+              <tr>
+                <td><strong>8. 厭氣濾床接觸曝氣</strong></td>
+                <td>Q ≤ 10 m<sup>3</sup>/day (5～50人)</td>
+                <td>厭氣濾床水深 ≥ 1.2 ～ 1.5 m</td>
+                <td>剝離污泥送至厭氣槽</td>
+                <td>以厭氣濾床槽取代初沉槽（濾材第1室 ≥ 40%、第2室 ≥ 60%），結合接觸曝氣。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[proc_生物處理工法比較]]</strong> ｜ <span class="pdf-source">[02.技術規範.pdf | 第2章 p.10-94]</span>
+        </div>
+      </div>
+
+      <!-- Slide 9: 水資中心單元標準與分期節能策略 -->
+      <div class="slide" id="slide-9">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">水資源中心單元標準與分期節能策略</div>
+            <div class="slide-subtitle">表面水理負荷、池壁厚度、100年防洪標高與初期低水量營運</div>
+          </div>
+          <div class="slide-chip">模組 9 · 水資中心廠區</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title teal">🏢 水資中心單元設計標準與紅線</div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>處理單元</th>
+                    <th>表面水理負荷 / 停留時間</th>
+                    <th>強制性構造紅線</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>初沉池 (Primary Clarifier)</strong></td>
+                    <td>表面水理負荷：<br>25 ～ 50 m<sup>3</sup>/m<sup>2</sup>·day</td>
+                    <td>沉澱時間 1.0 ～ 2.5 hr；池底坡度 1/100 ～ 2/100</td>
+                  </tr>
+                  <tr>
+                    <td><strong>終沉池 (Secondary Clarifier)</strong></td>
+                    <td>表面水理負荷：<br>20 ～ 30 m<sup>3</sup>/m<sup>2</sup>·day</td>
+                    <td>固體負荷 ≤ 150 kg/m<sup>2</sup>·day；水深 3.0 ～ 4.5 m</td>
+                  </tr>
+                  <tr>
+                    <td><strong>池體結構與防洪</strong></td>
+                    <td>廠區高程依 100 年淹水潛勢</td>
+                    <td><span class="badge-red">池槽壁厚 ≥ 30 cm</span>；混凝土添加抗硫化氫防蝕劑</td>
+                  </tr>
+                  <tr>
+                    <td><strong>加氯消毒機房</strong></td>
+                    <td>接觸消毒時間 ≥ 15 min</td>
+                    <td><span class="badge-red">強制設置漏氯中和洗滌塔與防爆抽風</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title teal">🌱 分期興建時程與營運初期對策</div>
+            <div class="rule-box">
+              <strong>大中型水資中心分期建設準則：</strong><br>
+              處理廠應分三期或二期建設；當前期營運處理水量達到該期計畫容量之 <span class="badge-green">80%</span> 時，即應啟動次期擴建工程評估檢討。<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[04.下水道系統設計及解說_第三章.pdf | 3.5節 p.32]</span>
+            </div>
+            <div class="redline-box" style="margin-bottom: 0;">
+              <strong>營運初期「低水量、低水質」因應對策：</strong><br>
+              接管初期進流水質過於稀薄、碳源不足，易引發活性污泥飢餓衰亡：
+              <ul style="padding-left: 18px; font-size: 0.82rem; margin-top: 4px; line-height: 1.6;">
+                <li><strong>初沉池繞流 (Bypass)</strong>：關閉初沉池刮泥機，進流水直接引入生物池補充 BOD 碳源！</li>
+                <li><strong>分組輪流運作</strong>：多池配置時，初期僅開啟 1 組池槽維持正常水理停留時間。</li>
+                <li><strong>抽水站濕井設置隔牆</strong>：避免水流滯留死區沉澱發酵發臭。</li>
+              </ul>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[04.下水道系統設計及解說_第三章.pdf | 3.5節 p.34-36]</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[rule_下水道污水處理廠單元標準]]</strong> ｜ <span class="pdf-source">[03.設施標準.pdf | 第35-46條]</span>
+        </div>
+      </div>
+
+      <!-- Slide 10: 用戶端排水設備施工與驗收紅線 -->
+      <div class="slide" id="slide-10">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">用戶排水設備設計與驗收施工紅線</div>
+            <div class="slide-subtitle">雨污分流、倒虹吸管禁用、化糞池強制填除與水密試驗</div>
+          </div>
+          <div class="slide-chip">模組 10 · 用戶端接管紅線</div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title red">⛔ 用戶端絕對禁止之違規紅線</div>
+            <div class="redline-box">
+              <strong>1. 雨水與污水嚴禁混接：</strong><br>
+              雨水管線嚴禁接入污水下水道，屋頂落水管與陽台洗衣機管線必須嚴格分流。<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[01.下水道用戶排水設備標準.pdf | 第5條 p.2]</span>
+            </div>
+            <div class="redline-box">
+              <strong>2. 用戶端嚴格禁用倒虹吸管：</strong><br>
+              家戶內部排水設備一律採用順坡重力暗管，<strong>絕對嚴禁設置倒虹吸管</strong>（防止油脂沉澱造成家戶管線完全堵塞發臭）！<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[01.下水道用戶排水設備標準.pdf | 第13條 p.3]</span>
+            </div>
+            <div class="redline-box" style="margin-bottom: 0;">
+              <strong>3. 嚴禁經化糞池後排入：</strong><br>
+              用戶接管工程施作時，既有化糞池必須<strong>強制抽乾洗淨、底版打穿填砂或拆除改管</strong>，糞尿廢水必須直接由新管接入公共下水道，嚴禁再滯留化糞池！<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[01.下水道用戶排水設備標準.pdf | 第29條 p.6]</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-title teal">🛠️ 用戶排水施工驗收標準</div>
+            <div class="rule-box">
+              <strong>橘紅色管材強制識別：</strong><br>
+              用戶污水管渠外觀必須為<strong>鮮明橘紅色</strong>，標註「污水下水道專用」，嚴禁使用一般灰色管混充。<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[01.下水道用戶排水設備標準.pdf | 第14條 p.3]</span>
+            </div>
+            <div class="rule-box">
+              <strong>存水彎水封深度標準：</strong><br>
+              各類衛生器具存水彎水封深度必須介於 <span class="badge-green">50 ～ 100 mm</span> (5 ～ 10 cm)，防止臭氣蚊蟲竄入。<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[01.下水道用戶排水設備標準.pdf | 第21條 p.5]</span>
+            </div>
+            <div class="rule-box" style="margin-bottom: 0;">
+              <strong>施工驗收水密試驗：</strong><br>
+              管渠掩埋前實施水壓或氣壓防漏檢驗；水槽或改建槽體必須實施 <strong>48 小時滿水防漏試驗</strong>。<br>
+              <span style="font-size: 0.78rem; color: var(--text-sub);">[01.標準 p.8] / [02.規範 p.102]</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[rule_用戶排水系統紅線]]</strong> ｜ <span class="pdf-source">[01.用戶標準.pdf | 第5, 13, 14, 21, 29條]</span>
+        </div>
+      </div>
+
+      <!-- Slide 11: 跨篇法規參數對照表 (Tab 切換) -->
+      <div class="slide" id="slide-11">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">跨篇法規參數交叉對照矩陣</div>
+            <div class="slide-subtitle">支援分類 Tab 分頁切換，橫向對比不同單元與規範之設計指標與紅線</div>
+          </div>
+          <div class="slide-chip">模組 11 · 跨篇參數對照</div>
+        </div>
+
+        <!-- Tab 導航按鈕 -->
+        <div class="tab-nav">
+          <button class="tab-btn active" onclick="switchParamTab('tab-pipes')">管渠水力與埋設標準</button>
+          <button class="tab-btn" onclick="switchParamTab('tab-water')">水質管制與處理單元</button>
+          <button class="tab-btn" onclick="switchParamTab('tab-manholes')">人孔、倒虹吸與附屬設施</button>
+          <button class="tab-btn" onclick="switchParamTab('tab-special')">特殊收集系統與耐震</button>
+        </div>
+
+        <!-- Tab 1: 管渠水力與埋設 -->
+        <div class="tab-pane active" id="tab-pipes">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>管渠類別</th>
+                  <th>最小管徑限制</th>
+                  <th>設計流速紅線</th>
+                  <th>最大容許水深比 (d/D)</th>
+                  <th>最小覆土深度 (土被)</th>
+                  <th>規範來源</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>用戶接管支管</strong></td>
+                  <td>≥ 100 mm (≤150人)</td>
+                  <td>維持順坡自清流速</td>
+                  <td>按衛生器具排水當量設計</td>
+                  <td>基地內依保護規定</td>
+                  <td>[01.用戶標準 第12, 18條]</td>
+                </tr>
+                <tr>
+                  <td><strong>公共污水重力管</strong></td>
+                  <td><span class="badge-red">≥ 200 mm</span></td>
+                  <td><span class="badge-red">0.6 ～ 3.0 m/s</span> (理想 1.0～1.8)</td>
+                  <td>D ≤ 500 mm: <span class="badge-red">d/D ≤ 0.5</span><br>D ≥ 1000 mm: d/D ≤ 0.8</td>
+                  <td>剛性管 ≥ 50 cm<br>撓性管 ≥ 100 cm</td>
+                  <td>[03.設施標準 第10, 27條]<br>[05.第四章 4.3-4.4節]</td>
+                </tr>
+                <tr>
+                  <td><strong>公共雨水及合流管</strong></td>
+                  <td><span class="badge-red">≥ 800 mm</span> (箱涵 1200 mm)</td>
+                  <td>0.8 ～ 3.0 m/s</td>
+                  <td>按計畫逕流量全滿流檢核</td>
+                  <td>圓管 ≥ 75 cm<br>箱涵無限制</td>
+                  <td>[03.設施標準 第4, 5, 10條]</td>
+                </tr>
+                <tr>
+                  <td><strong>側溝淨距規定</strong></td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td><span class="badge-red">低於側溝底版 ≥ 0.2 m</span></td>
+                  <td>[05.第四章 4.4節 p.36]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 2: 水質管制與處理單元 -->
+        <div class="tab-pane" id="tab-water">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>管制對象 / 單元</th>
+                  <th>BOD 管制限值</th>
+                  <th>SS 管制限值</th>
+                  <th>水理表面負荷 / HRT</th>
+                  <th>關鍵構造與防護紅線</th>
+                  <th>規範出處</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>甲類放流水標準</strong></td>
+                  <td>≤ 30 mg/L</td>
+                  <td>≤ 30 mg/L</td>
+                  <td>二級去除率 ≥ 85%</td>
+                  <td>水源保護區全面強制適用</td>
+                  <td>[02.規範 p.1] / [03.標準 p.18]</td>
+                </tr>
+                <tr>
+                  <td><strong>乙類放流水標準</strong></td>
+                  <td>≤ 50 mg/L</td>
+                  <td>≤ 50 mg/L</td>
+                  <td>特定寬鬆水體</td>
+                  <td>大腸桿菌群 ≤ 300,000</td>
+                  <td>[02.規範 p.1]</td>
+                </tr>
+                <tr>
+                  <td><strong>初級沉澱池</strong></td>
+                  <td>去除率 25% ～ 40%</td>
+                  <td>去除率 40% ～ 60%</td>
+                  <td>表面負荷 25 ～ 50 m<sup>3</sup>/m<sup>2</sup>·day</td>
+                  <td>池底坡度 1/100～2/100；壁厚 ≥ 30 cm</td>
+                  <td>[03.設施標準 第35-36條]</td>
+                </tr>
+                <tr>
+                  <td><strong>二次沉澱池</strong></td>
+                  <td>二級處理出水</td>
+                  <td>二級處理出水</td>
+                  <td>表面負荷 20 ～ 30 m<sup>3</sup>/m<sup>2</sup>·day</td>
+                  <td>固體負荷 ≤ 150 kg/m<sup>2</sup>·day；水深 3～4.5m</td>
+                  <td>[03.設施標準 第41條]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 3: 人孔、倒虹吸與附屬設施 -->
+        <div class="tab-pane" id="tab-manholes">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>附屬設施</th>
+                  <th>設置條件與間距</th>
+                  <th>管徑與斷面要求</th>
+                  <th>水力與結構限制</th>
+                  <th>規範出處</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>公共人孔間距</strong></td>
+                  <td>D ≤ 600 mm: ≤ 50 m<br>D = 700～1000 mm: ≤ 70 m</td>
+                  <td>圓形人孔內徑 ≥ 90 cm (深人孔 ≥ 120 cm)</td>
+                  <td>管徑變化、坡度轉折或匯合處必須設置</td>
+                  <td>[03.設施標準 第8, 29條]</td>
+                </tr>
+                <tr>
+                  <td><strong>新式人孔蓋 (CNS 15536)</strong></td>
+                  <td>全面推廣於道路人孔</td>
+                  <td>座框與蓋面 8° 斜面錐度</td>
+                  <td><span class="badge-red">防墜 ≥ 4.5 kN</span>；耐揚壓 60～106 kN (上浮 ≤ 20 mm)</td>
+                  <td>[05.第四章 4.5節 p.53-57]</td>
+                </tr>
+                <tr>
+                  <td><strong>公共倒虹吸管</strong></td>
+                  <td>跨越鐵路、河川等無可避免處</td>
+                  <td><span class="badge-red">最小管徑 ≥ 250 mm</span></td>
+                  <td><span class="badge-red">必須設置兩條平行管</span>；流速 ≥ 0.9 m/s；河床下 ≥ 2 m</td>
+                  <td>[03.設施標準 第7條]<br>[04.第三章 3.2.7節]</td>
+                </tr>
+                <tr>
+                  <td><strong>跌落設施 (跌落井)</strong></td>
+                  <td>管渠進出水落差 &gt; 0.6 m</td>
+                  <td>D ≤ 400 mm 採外落管</td>
+                  <td>深井 (>5m) 與大流量採渦流消能井</td>
+                  <td>[03.設施標準 第12條]<br>[05.第四章 4.6節]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Tab 4: 特殊收集系統與耐震 -->
+        <div class="tab-pane" id="tab-special">
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>特殊系統 / 規範</th>
+                  <th>適用場域</th>
+                  <th>工作壓力 / 流速</th>
+                  <th>核心設備要求</th>
+                  <th>規範出處</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>真空式下水道</strong></td>
+                  <td>高地下水、平坦地貌、狹小巷弄</td>
+                  <td>負壓 -6 ～ -7 m 水柱<br>高速 4.6 ～ 5.5 m/s</td>
+                  <td>真空收集閥箱、真空泵、除臭過濾器</td>
+                  <td>[05.第四章 4.7節 p.75-77]</td>
+                </tr>
+                <tr>
+                  <td><strong>壓力式下水道</strong></td>
+                  <td>起伏劇烈丘陵、分散型農村社區</td>
+                  <td>泵送流速 0.6 ～ 3.0 m/s</td>
+                  <td>沉水粉碎泵 (固體 &lt; 6 mm)、逆止閥</td>
+                  <td>[05.第四章 4.7節 p.78-80]</td>
+                </tr>
+                <tr>
+                  <td><strong>管線耐震防護</strong></td>
+                  <td>斷層帶、土壤液化區、軟弱地盤</td>
+                  <td>可撓性接頭 (偏角 ≥ 1.5°～3.0°)</td>
+                  <td>人孔管線交接處設防震橡膠沉陷接頭</td>
+                  <td>[05.第四章 4.9節 p.95-102]</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[index]]</strong> ｜ <span class="pdf-source">[01～05 篇文獻綜合交叉對照]</span>
+        </div>
+      </div>
+
+      <!-- Slide 12: 簡易設計計算 / 合規檢核小互動工具 -->
+      <div class="slide" id="slide-12">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">簡易設計計算與合規檢核互動工具箱</div>
+            <div class="slide-subtitle">依據 5 篇文獻真實公式設計：左側參數輸入、右側即時計算結果與條文出處</div>
+          </div>
+          <div class="slide-chip">模組 12 · 互動檢核工具</div>
+        </div>
+
+        <div class="calc-layout">
+          <!-- 左側輸入面板 -->
+          <div class="calc-input-panel">
+            <div class="card-title teal" style="margin-bottom: 12px;">🎛️ 現場設計參數輸入</div>
+            
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--teal-primary); margin-bottom: 6px;">【1. 曼寧水理與水深比檢核】</div>
+            <div class="form-group">
+              <label>圓管內徑 D (mm)</label>
+              <input type="number" class="form-control" id="tool-d" value="300" step="50" oninput="executeLiveCalc()">
+            </div>
+            <div class="form-group">
+              <label>管底坡度 S (m/m)</label>
+              <input type="number" class="form-control" id="tool-s" value="0.005" step="0.001" oninput="executeLiveCalc()">
+            </div>
+            <div class="form-group">
+              <label>設計水深比 d/D (0.1 ～ 1.0)</label>
+              <input type="number" class="form-control" id="tool-dd" value="0.5" step="0.05" min="0.1" max="1.0" oninput="executeLiveCalc()">
+            </div>
+
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--teal-primary); margin-top: 14px; margin-bottom: 6px;">【2. 跌落消能檢核】</div>
+            <div class="form-group">
+              <label>進出水落差 Δh (m)</label>
+              <input type="number" class="form-control" id="tool-drop" value="0.8" step="0.1" oninput="executeLiveCalc()">
+            </div>
+
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--teal-primary); margin-top: 14px; margin-bottom: 6px;">【3. 埋設覆土與擋土檢核】</div>
+            <div class="form-group">
+              <label>管材剛柔屬性</label>
+              <select class="form-control" id="tool-ptype" onchange="executeLiveCalc()">
+                <option value="rigid">剛性管 (鋼筋混凝土管 RCP)</option>
+                <option value="flexible">撓性管 (PVC / HDPE / FRP)</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>開挖覆土深度 (m)</label>
+              <input type="number" class="form-control" id="tool-depth" value="1.8" step="0.1" oninput="executeLiveCalc()">
+            </div>
+          </div>
+
+          <!-- 右側即時計算與合規判定面板 -->
+          <div class="calc-output-panel">
+            <div class="card-title teal" style="margin-bottom: 4px;">📊 即時合規檢核結果</div>
+
+            <!-- 結果卡 1: 水理與水深比 -->
+            <div class="result-card">
+              <div class="result-title">
+                <span>重力流速與通水能力 (曼寧公式 n=0.015)</span>
+                <span id="badge-flow-status">判定中</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 4px;">
+                <div>流速 V: <span class="result-value-big" id="out-v">-- m/s</span></div>
+                <div>流量 Q: <span class="result-value-big" id="out-q">-- L/s</span></div>
+              </div>
+              <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 6px;" id="out-flow-desc">
+                --
+              </div>
+              <div style="font-size: 0.74rem; color: var(--teal-primary); margin-top: 4px;">
+                依據：[05.下水道系統設計及解說_第四章.pdf | 4.2-4.3節 p.20, 25, 28]
+              </div>
+            </div>
+
+            <!-- 結果卡 2: 跌落消能 -->
+            <div class="result-card">
+              <div class="result-title">
+                <span>人孔跌落差消能要求 (門檻 0.6 m)</span>
+                <span id="badge-drop-status">判定中</span>
+              </div>
+              <div style="font-size: 0.88rem; font-weight: 700; color: var(--text-main); margin-top: 2px;" id="out-drop-rec">
+                --
+              </div>
+              <div style="font-size: 0.74rem; color: var(--teal-primary); margin-top: 4px;">
+                依據：[03.下水道工程設施標準.pdf | 第12條] / [05.第四章 | 4.6節 p.65]
+              </div>
+            </div>
+
+            <!-- 結果卡 3: 覆土與擋土 -->
+            <div class="result-card">
+              <div class="result-title">
+                <span>埋深覆土與開挖擋土支撐安全</span>
+                <span id="badge-excav-status">判定中</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 0.84rem; margin-top: 2px;">
+                <span id="out-cover-check">覆土：--</span>
+                <span id="out-shoring-check">擋土：--</span>
+              </div>
+              <div style="font-size: 0.78rem; color: #7F1D1D; margin-top: 4px;">
+                ★ 規定回填材料：<strong>全面強制採用 CLSM 或 MRC</strong>，嚴禁原土石回填。
+              </div>
+              <div style="font-size: 0.74rem; color: var(--teal-primary); margin-top: 4px;">
+                依據：[05.下水道系統設計及解說_第四章.pdf | 4.4, 4.8節 p.35, 81, 83]
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[rule_管渠水力水理學與水力特性]]</strong> ｜ <span class="pdf-source">[05.第四章.pdf | 4.2-4.8節]</span>
+        </div>
+      </div>
+
+      <!-- Slide 13: 跨文獻規範衝突裁決與總結 -->
+      <div class="slide" id="slide-13">
+        <div class="slide-header">
+          <div class="slide-title-wrap">
+            <div class="slide-title">跨文獻衝突裁決清冊與 LLM Wiki 導覽</div>
+            <div class="slide-subtitle">使用者明確指示裁決清單、知識庫稽核指標與完整目錄導航</div>
+          </div>
+          <div class="slide-chip">模組 13 · 總結與導覽</div>
+        </div>
+
+        <div class="table-responsive" style="margin-bottom: 12px;">
+          <table>
+            <thead>
+              <tr>
+                <th>編號</th>
+                <th>規範衝突項目</th>
+                <th>舊版技術手冊說明</th>
+                <th>最新《下水道工程設施標準》裁決基準</th>
+                <th>使用者明確裁決方針</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>01</strong></td>
+                <td><strong>管渠埋設最小坡度</strong></td>
+                <td>小管徑採 1/50；管徑 &gt; 75 mm 採 1/100</td>
+                <td>以重力流曼寧公式滿足自清流速 <span class="badge-red">V ≥ 0.6 m/s</span> 為準</td>
+                <td><strong>以下水道工程設施標準為準</strong>，小管維持 1/50，主管依流速檢核。</td>
+              </tr>
+              <tr>
+                <td><strong>02</strong></td>
+                <td><strong>倒虹吸管禁用範圍</strong></td>
+                <td>《用戶標準》第13條：「不得採用倒虹吸管」</td>
+                <td>第7條：公共管渠無可避免得設，<strong>但必須設兩條平行管</strong>且流速 ≥ 0.9 m/s</td>
+                <td><strong>以下水道工程設施標準為準</strong>：公共幹管得設雙管；用戶端仍嚴格禁用。</td>
+              </tr>
+              <tr>
+                <td><strong>03</strong></td>
+                <td><strong>污水管渠最小管徑</strong></td>
+                <td>《用戶標準》第18條：家戶內部 ≤150 人得採 100 mm</td>
+                <td>第27條：公共污水幹支管最小管徑不得小於 <span class="badge-red">≥ 200 mm</span></td>
+                <td><strong>以下水道工程設施標準為準</strong>：公共管渠一律 ≥ 200 mm；家戶支管採 100 mm。</td>
+              </tr>
+              <tr>
+                <td><strong>04</strong></td>
+                <td><strong>人孔最大設置間距</strong></td>
+                <td>舊版多一律以 50m 為限</td>
+                <td>第8條、第29條：建立完整階梯級距 (50m → 70m → 100m → 120m)</td>
+                <td><strong>以下水道工程設施標準為準</strong>，按新法管徑級距檢核。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title teal">📁 LLM Wiki 結構化知識庫指標</div>
+            <ul style="font-size: 0.84rem; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+              <li><strong>收錄規模：</strong>32 篇 Markdown 筆記（無任何孤島頁面）</li>
+              <li><strong>溯源出處標籤：</strong>全庫累計標註 <strong>413 處精確出處標籤</strong></li>
+              <li><strong>雙向交叉連結：</strong>全庫 <strong>156 處內部雙向連結 `[[...]]`</strong></li>
+              <li><strong>封閉庫合規：</strong>100% 依據 `papers/` 5 篇文獻，零外部腦補</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-title teal">🔗 快速開啟 Wiki 主目錄與日誌</div>
+            <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 10px;">
+              本簡報產出於工作區根目錄，所有底層工程筆記均在 <code>wiki/index.md</code> 與 <code>wiki/log.md</code> 完整歸檔。
+            </p>
+            <div style="display: flex; gap: 8px;">
+              <a href="wiki/index.md" class="btn btn-teal" target="_blank" style="text-decoration: none;">📖 開啟 Wiki 總目錄 (index.md)</a>
+              <a href="wiki/log.md" class="btn" target="_blank" style="text-decoration: none;">📜 查閱系統日誌 (log.md)</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="provenance-capsule">
+          資料來源：<strong>[[index]]</strong> ｜ <span class="pdf-source">[01～05 篇官方文獻全集]</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 底部懸浮導航列 -->
+  <footer>
+    <div class="footer-left">
+      <span>💡 導覽提示：使用鍵盤左右鍵 <code>[←]</code> <code>[→]</code>、<code>[空白鍵]</code> 翻頁</span>
+    </div>
+    <div class="footer-right">
+      <button class="btn" onclick="prevSlide()">◀ 上一頁</button>
+      <button class="btn btn-teal" onclick="nextSlide()">下一頁 ▶</button>
+    </div>
+  </footer>
+
+  <!-- 目錄跳轉側邊抽屜 -->
+  <div class="toc-drawer" id="tocDrawer">
+    <div class="toc-header">
+      <span style="font-weight: 800; color: var(--teal-primary); font-size: 1.05rem;">📑 簡報章節目錄</span>
+      <button class="btn" onclick="toggleTOC()">✕ 關閉</button>
+    </div>
+    <ul class="toc-list" id="tocList">
+      <li class="toc-item active" onclick="goToSlide(1)"><span class="toc-num">01</span> 封面與法規架構總覽</li>
+      <li class="toc-item" onclick="goToSlide(2)"><span class="toc-num">02</span> 水量推估與水質設計基準</li>
+      <li class="toc-item" onclick="goToSlide(3)"><span class="toc-num">03</span> 放流水水質標準與法規紅線</li>
+      <li class="toc-item" onclick="goToSlide(4)"><span class="toc-num">04</span> 管渠水理學與圓管特性曲線</li>
+      <li class="toc-item" onclick="goToSlide(5)"><span class="toc-num">05</span> 管渠流速紅線與水深比餘裕</li>
+      <li class="toc-item" onclick="goToSlide(6)"><span class="toc-num">06</span> 特殊地形消能與特殊系統</li>
+      <li class="toc-item" onclick="goToSlide(7)"><span class="toc-num">07</span> 耐震、新式人孔蓋與施工安全</li>
+      <li class="toc-item" onclick="goToSlide(8)"><span class="toc-num">08</span> 八大生物處理工法矩陣對比</li>
+      <li class="toc-item" onclick="goToSlide(9)"><span class="toc-num">09</span> 水資中心單元標準與分期節能</li>
+      <li class="toc-item" onclick="goToSlide(10)"><span class="toc-num">10</span> 用戶排水設計與施工驗收紅線</li>
+      <li class="toc-item" onclick="goToSlide(11)"><span class="toc-num">11</span> 跨篇法規參數交叉對照矩陣</li>
+      <li class="toc-item" onclick="goToSlide(12)"><span class="toc-num">12</span> 簡易設計計算與合規檢核器</li>
+      <li class="toc-item" onclick="goToSlide(13)"><span class="toc-num">13</span> 跨文獻衝突裁決與總結</li>
+    </ul>
+  </div>
+
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 13;
+
+    function updateSlideUI() {
+      for (let i = 1; i <= totalSlides; i++) {
+        const slide = document.getElementById('slide-' + i);
+        if (slide) slide.classList.remove('active');
+      }
+
+      const activeSlide = document.getElementById('slide-' + currentSlide);
+      if (activeSlide) activeSlide.classList.add('active');
+
+      document.getElementById('slideCounter').textContent = 'Slide ' + currentSlide + ' / ' + totalSlides;
+      const progressPercent = (currentSlide / totalSlides) * 100;
+      document.getElementById('progressBar').style.width = progressPercent + '%';
+
+      const tocItems = document.querySelectorAll('.toc-item');
+      tocItems.forEach((item, index) => {
+        if (index + 1 === currentSlide) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlideUI();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlideUI();
+      }
+    }
+
+    function goToSlide(n) {
+      if (n >= 1 && n <= totalSlides) {
+        currentSlide = n;
+        updateSlideUI();
+        toggleTOC(false);
+      }
+    }
+
+    function toggleTOC(forceState) {
+      const drawer = document.getElementById('tocDrawer');
+      if (typeof forceState === 'boolean') {
+        if (forceState) drawer.classList.add('open');
+        else drawer.classList.remove('open');
+      } else {
+        drawer.classList.toggle('open');
+      }
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          alert('全螢幕切換失敗: ' + err.message);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // 鍵盤監聽事件 (左右箭頭、空白鍵)
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'Escape') {
+        toggleTOC(false);
+      } else if (e.key === 'Home') {
+        goToSlide(1);
+      } else if (e.key === 'End') {
+        goToSlide(totalSlides);
+      }
+    });
+
+    // 跨篇參數 Tab 切換
+    function switchParamTab(tabId) {
+      const panes = document.querySelectorAll('.tab-pane');
+      panes.forEach(pane => pane.classList.remove('active'));
+
+      const btns = document.querySelectorAll('.tab-btn');
+      btns.forEach(btn => btn.classList.remove('active'));
+
+      const targetPane = document.getElementById(tabId);
+      if (targetPane) targetPane.classList.add('active');
+
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+      }
+    }
+
+    // === 模組 12 即時互動合規計算器邏輯 ===
+    function executeLiveCalc() {
+      // 1. 曼寧水力計算
+      const d_mm = parseFloat(document.getElementById('tool-d').value) || 300;
+      const s = parseFloat(document.getElementById('tool-s').value) || 0.005;
+      const dd = parseFloat(document.getElementById('tool-dd').value) || 0.5;
+      const n = 0.015; // 規範安全設計值
+
+      const d_m = d_mm / 1000.0;
+      const r_full = d_m / 4.0;
+      const a_full = Math.PI * Math.pow(d_m, 2) / 4.0;
+      const v_full = (1.0 / n) * Math.pow(r_full, 2.0 / 3.0) * Math.sqrt(s);
+      const q_full = a_full * v_full;
+
+      let v_ratio = 1.0;
+      let q_ratio = 0.5;
+
+      if (dd <= 0.5) {
+        v_ratio = Math.pow(dd / 0.5, 0.4);
+        q_ratio = dd;
+      } else if (dd <= 0.813) {
+        v_ratio = 1.0 + (1.14 - 1.0) * ((dd - 0.5) / (0.813 - 0.5));
+        q_ratio = 0.5 + (0.988 - 0.5) * ((dd - 0.5) / (0.813 - 0.5));
+      } else if (dd <= 0.938) {
+        v_ratio = 1.14 - (1.14 - 1.13) * ((dd - 0.813) / (0.938 - 0.813));
+        q_ratio = 0.988 + (1.076 - 0.988) * ((dd - 0.813) / (0.938 - 0.813));
+      } else {
+        v_ratio = 1.13 - (1.13 - 1.0) * ((dd - 0.938) / (1.0 - 0.938));
+        q_ratio = 1.076 - (1.076 - 1.0) * ((dd - 0.938) / (1.0 - 0.938));
+      }
+
+      const v = v_full * v_ratio;
+      const q_ls = (q_full * q_ratio) * 1000.0;
+
+      document.getElementById('out-v').textContent = v.toFixed(2) + ' m/s';
+      document.getElementById('out-q').textContent = q_ls.toFixed(1) + ' L/s';
+
+      const badgeFlow = document.getElementById('badge-flow-status');
+      const descFlow = document.getElementById('out-flow-desc');
+
+      let v_ok = (v >= 0.6 && v <= 3.0);
+      let dd_ok = (d_mm <= 500) ? (dd <= 0.5) : (dd <= 0.8);
+
+      if (v_ok && dd_ok) {
+        badgeFlow.innerHTML = '<span class="badge-green">通過 ✅</span>';
+        descFlow.innerHTML = '流速 ' + v.toFixed(2) + ' m/s 符合規範 (0.6～3.0 m/s)，水深比 ' + dd + ' 符合管徑 ' + d_mm + ' mm 之餘裕率限制。';
+      } else {
+        badgeFlow.innerHTML = '<span class="badge-red">超標 ⚠️</span>';
+        let reasons = [];
+        if (v < 0.6) reasons.push('流速低於 0.6 m/s (易沉積發酵 H<sub>2</sub>S)');
+        if (v > 3.0) reasons.push('流速超過 3.0 m/s (管壁衝蝕超標)');
+        if (!dd_ok && d_mm <= 500) reasons.push('管徑 ≤500mm 要求 d/D ≤ 0.5 (現為 ' + dd + ')');
+        if (!dd_ok && d_mm > 500) reasons.push('大管徑要求 d/D ≤ 0.8 (現為 ' + dd + ')');
+        descFlow.innerHTML = '檢核未通過：' + reasons.join('；') + '。';
+      }
+
+      // 2. 跌落消能計算
+      const drop = parseFloat(document.getElementById('tool-drop').value) || 0.8;
+      const badgeDrop = document.getElementById('badge-drop-status');
+      const recDrop = document.getElementById('out-drop-rec');
+
+      if (drop <= 0.6) {
+        badgeDrop.innerHTML = '<span class="badge-green">通過 (免設) ✅</span>';
+        recDrop.innerHTML = 'Δh = ' + drop + ' m ≤ 0.6 m，採平緩管底流槽銜接即可。';
+      } else {
+        badgeDrop.innerHTML = '<span class="badge-red">強制設跌落井 ⚠️</span>';
+        if (drop >= 5.0) {
+          recDrop.innerHTML = 'Δh = ' + drop + ' m &gt; 5.0 m，推薦設置<strong>渦流消能井 (Vortex Drop)</strong>，貼壁消能效率最佳。';
+        } else if (d_mm <= 400) {
+          recDrop.innerHTML = 'Δh = ' + drop + ' m 且管徑 ≤ 400 mm，推薦設置<strong>外落管式跌落井 (External Drop)</strong>。';
+        } else {
+          recDrop.innerHTML = 'Δh = ' + drop + ' m 且管徑 &gt; 400 mm，推薦設置<strong>擋板消能式或階梯消能式跌落井</strong>。';
+        }
+      }
+
+      // 3. 埋深與擋土計算
+      const ptype = document.getElementById('tool-ptype').value;
+      const depth = parseFloat(document.getElementById('tool-depth').value) || 1.8;
+      const badgeExcav = document.getElementById('badge-excav-status');
+      const coverText = document.getElementById('out-cover-check');
+      const shoringText = document.getElementById('out-shoring-check');
+
+      let cover_ok = (ptype === 'rigid') ? (depth >= 0.5) : (depth >= 1.0);
+      let min_req = (ptype === 'rigid') ? '50 cm' : '100 cm';
+
+      if (cover_ok) {
+        coverText.innerHTML = '覆土深度 ' + depth + ' m ≥ 規範 ' + min_req + '：<span class="badge-green">合格 ✅</span>';
+      } else {
+        coverText.innerHTML = '覆土深度 ' + depth + ' m &lt; 規範 ' + min_req + '：<span class="badge-red">不足 ⚠️</span>';
+      }
+
+      if (depth >= 1.5) {
+        shoringText.innerHTML = '開挖深度 ' + depth + ' m ≥ 1.5 m：<span class="badge-red">強制設置擋土支撐 ⚠️</span>';
+      } else {
+        shoringText.innerHTML = '開挖深度 ' + depth + ' m &lt; 1.5 m：<span class="badge-green">未達強制擋土深度 ✅</span>';
+      }
+
+      if (cover_ok && depth < 1.5) {
+        badgeExcav.innerHTML = '<span class="badge-green">通過 ✅</span>';
+      } else if (!cover_ok) {
+        badgeExcav.innerHTML = '<span class="badge-red">覆土不足 ⚠️</span>';
+      } else {
+        badgeExcav.innerHTML = '<span class="badge-amber">需擋土防護 ⚠️</span>';
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      executeLiveCalc();
+    });
+  </script>
+</body>
+</html>
